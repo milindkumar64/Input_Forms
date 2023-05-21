@@ -1,0 +1,142 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/input_forms.css">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <header class="headerContainer">
+            HTML 5 Form Input fields
+            <!-- <h1>HTML 5 Form Input fields</h1> -->
+        </header>
+        <div>
+            <label for="text">Text input for Name :</label>
+            <input type="text">
+            <input type="text" id="text" name="text">
+            <error-output class="text-error"></error-output>
+        </div>
+        <div>
+            <label for="pwd">Password input type :</label>
+            <input type="password" id="pwd" name="pwd">
+            <error-output class="password-error"></error-output>
+
+        </div>
+        <div>
+            <label for="email">Email input type :</label>
+            <input type="email" id="email" name="email">
+            <error-output class="email-error"></error-output>
+
+        </div>
+        <div>
+            <label for="URL">URL input type :</label>
+            <input type="url" id="url" name="url">
+            <error-output class="url-error"></error-output>
+
+        </div>
+        <div>
+            <label for="number">Number input type :</label>
+            <input type="number" id="number" name="number">
+            <error-output class="number-error"></error-output>
+
+        </div>
+        <div>
+            <label for="tel">Telephone input type :</label>
+            <input type="tel" id="tel" name="tel">
+            <error-output class="telephone-error"></error-output>
+
+        </div>
+        <div>
+            <label for="search">Search input type :</label>
+            <input type="search" id="search" name="search">
+            <error-output class="search-error"></error-output>
+        </div>
+        <div class="nativeDataPicker">
+            <label for="Date">Choose a date and time :</label>
+            <input type="datetime-local" id="Date" name="Date">
+        </div>
+        <div>
+            <label for="Salary">Choose your Salary :</label>
+            <input type="range" id="Salary" name="Salary" min="300000" max="500000" value="400000">
+            <output for="Salary" class="salary-output">400000</output>
+        </div>
+        <button>Submit</button>
+    </form>
+    <script>
+         //UC1 name validation
+         const text = document.querySelector("#text");
+         const textError = document.querySelector(".text-error");
+         text.addEventListener('input', function () {
+            let nameRegex = RegExp('^[A-Z]{1}[a-z]{2,}$');
+            if (nameRegex.test(text.value)) {
+                textError.textContent = "";
+            }
+            else {
+                textError.textContent = "Name is incorrect";
+            }
+        })
+         //UC2 email validation
+         const email = document.querySelector("#email");
+        const emailError = document.querySelector(".email-error"); //^[a-z.+_-]+[.a-z0-9]*+@[a-z0-9]+[.a-z]+[.a-z0-9]*$
+
+        email.addEventListener('input', function () {
+            console.log(email.value);
+            //let emailRegex = RegExp('^[a-z.+_-]+[.a-z0-9]*+@[a-z0-9]+[.a-z]+[.a-z0-9]*$');
+            let emailRegex = RegExp("^[a-z.+_-]+[.a-z0-9]*@[a-z0-9]+[.a-z]+[.a-z0-9]*$");
+
+            if (emailRegex.test(email.value)) {
+                emailError.textContent = "";
+            }
+            else {
+                emailError.textContent = "email is incorrect";
+            }
+        })
+         //UC3 mobile validation
+         const mobile = document.querySelector("#tel");
+        const mobileError = document.querySelector(".telephone-error");
+        mobile.addEventListener('input', function () {
+            let numberRegex = RegExp('^([0-9]{2}\\s)?[0-9]{10}$');
+            if (numberRegex.test(mobile.value)) {
+                mobileError.textContent = "";
+            }
+            else {
+                mobileError.textContent = "mobile is incorrect";
+            }
+        })
+          //UC4 password validation-rule1
+          const password = document.querySelector("#pwd");
+        const passwordError = document.querySelector(".password-error");
+        password.addEventListener('input', function () {
+            let passwordRegex = RegExp('(?=\\S+$).{8,20}$'); 
+            if (passwordRegex.test(password.value)) {
+                passwordError.textContent = "";
+            }
+            else {
+                passwordError.textContent = "Password is incorrect";
+            }
+        })
+         //UC5 password validation
+         const passwords = document.querySelector("#pwd");
+        const passwordsError = document.querySelector(".password-error");
+        passwords.addEventListener('input', function () {
+            let passwordRegex = RegExp('(?=\\S+$).{8,20}$' + '(?=.*[A-Z])' + '(?=.*[0-9])' + '(?=.*[@#$%^&+=])'); //UC5Rule4
+            if (passwordRegex.test(passwords.value)) {
+                passwordsError.textContent = "";
+            }
+            else {
+                passwordsError.textContent = "Password is incorrect";
+            }
+        })
+        const Salary = document.querySelector("#Salary");
+        const output = document.querySelector('.salary-output');
+
+        Salary.addEventListener('input', function () {
+            console.log(Salary.value);
+            output.textContent = Salary.value;
+        })
+    </script>
+    
+</body>
+</html>
